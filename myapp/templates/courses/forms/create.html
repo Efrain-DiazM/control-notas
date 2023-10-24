@@ -1,0 +1,160 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+<!-- {% block title %}
+Administración | Crear curso
+{% endblock %} -->
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Gestión de cursos</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Escritorio</a></li>
+                        <li class="breadcrumb-item active">Crear curso</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Agregar nuevo curso</h3>
+                        </div>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="idCourse">ID curso:</label>
+                                            <input type="text" class="form-control" id="idCourse" name="idCourse" placeholder="Nombre del curso">
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nombreCurso">Nombre del curso:</label>
+                                            <input type="text" class="form-control" id="nombreCurso" name="nombreCurso" placeholder="Nombre del curso">
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="numeroCreditos">Número de Creditos:</label>
+                                            <input type="number" class="form-control" id="numeroCreditos" name="numeroCreditos" placeholder="Cantidad de creditos">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="programaPertenece">Tipo de programa:</label>
+                                            <select class="select2" id="programaPertenece" name="programaPertenece" data-placeholder="Seleccione tipo de programa" style="width: 100%;">
+                                                <option>Ingenieria de software</option>
+                                                <option>Ingenieria industrial</option>
+                                                <option>Derecho</option>
+                                                <option>Odontologia</option>
+                                                <option>Enfermeria</option>                                        
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tipoPrograma">Oferta academica:</label>
+                                            <select class="select2" id="tipoPrograma" name="tipoPrograma" data-placeholder="Seleccione tipo de programa" style="width: 100%;">
+                                                <option>Pregrado</option>
+                                                <option>Postgrado</option>
+                                                <option>Especialización</option>
+                                                <option>Doctorado</option>
+                                                <option>Tecnico por competencias</option>
+                                                <option>Licenciatura</option>                                        
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="semestre">Semestre:</label>
+                                            <input type="text" class="form-control" id="semestre" name="semestre" placeholder="Ingrese el horario de clases">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripción del curso:</label>
+                                            <textarea class="form-control" rows="3" id="descripcion" name="descripcion" placeholder="Ingrese la descripción aquí..."></textarea>
+                                        </div>
+                                    </div>                        
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">Recursos requeridos</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                                                    <label class="custom-file-label" for="exampleInputFile">Seleccione un archivo</label>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">Cargar</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                                                                                                    -->
+                                </div>                                
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary">Crear curso</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table id="myTable" class="table table-bordered
+                    table-hover">
+                    <thead>                                   
+                            <th>Nombre de curso</th>
+                            <th>Cant.Creditos</th>
+                            <th>Programa</th>
+                            <th>Semestre</th>                                        
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>  
+                        {% for curso in cursos %}                                  
+                        <tr>
+                            <td>{{curso.nombreCurso}}</td>
+                            <td>{{curso.numeroCreditos}}</td>
+                            <td>{{curso.programaPertenece}}</td>
+                            <td>{{curso.semestre}}</td>
+                            <td>
+                                <a href="/editCourse" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>                                            
+                                <a href="/registerCourse" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="/registerCourse" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}                                                                                                 
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nombre de curso</th>
+                            <th>Cant.Creditos</th>
+                            <th>Programa</th>
+                            <th>Semestre</th>                                        
+                            <th>Acciones</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}
