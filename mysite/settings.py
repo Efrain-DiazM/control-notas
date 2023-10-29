@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%9jmr7=cojg&cwcvqxh9ow0ch5%0j#_#=4x8lc65cj(s-&=2wu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["cl0ud.azurewebsites.net", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 # STATICFILES_DIRS = ['C:/Users/E420/Documents/ingenieria de software/Cuarto semestre/Calidad de software/Djangoproject/mysite/myapp/static']
 
